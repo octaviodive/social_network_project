@@ -1,7 +1,11 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 
-from accounts.forms import RegistrationForm
+from accounts.forms import RegistrationForm, AccountAuthenticationForm, AccountUpdateForm
+
+def home_view(request):
+    context = {}
+    return render(request, "accounts/home.html", context)
 
 def registration_view(request):
     context = {}
@@ -20,6 +24,56 @@ def registration_view(request):
     else:
         form = RegistrationForm()
         context['registration_form'] = form
-    return render(request, 'account/register.html', context)
+    return render(request, 'accounts/register.html', context)
+
+def logout_view(request):
+    logout(request)
+    return redirect('home')
+
+def login_view(request):
+    context = {}
+
+    user = request.user
+    if user.is_authenticated:
+        return redirect('home')
+
+    if request.POST:
+        form = AccountAuthenticationForm(request.POST)
+        if form.is_valid():
+            email = request.POST['email']
+            password = request.POST['password']
+            user = authenticate(email=email, password=password)
+
+            if user:
+                login(request, user)
+                return redirect('home')
+
+    else:
+        form = AccountAuthenticationForm()
+
+    context['login_form'] = form
+    return render(request, 'accounts/login.html', context)
 
 
+def account_view(request):
+
+    if not request.user.is_authenticated:
+        return redirect("login")
+
+    context = {}
+
+    if request.POST:
+        form = AccountUpdateForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+
+    else:
+        form = AccountUpdateForm(
+            initial={
+                "email": request.user.email,
+                "username": request.user.username,
+            }
+        )
+
+    context['account_form'] = form
+    return render(request, 'accounts/account.html', context)

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style type="text/css">
+	.login{
+		margin: auto;
+		height: 100px;
+        width: 30%;
+     }
+    h1{
+    text-align: center;}
+</style>
+ <h1 class="display-4 fw-bold lh-1 mb-3">AlmostAll</h1>
+<div class="login">
+<form class="p-4 p-md-5 border rounded-3 bg-light"  action="{% url 'login' %}" method="post" >{% csrf_token %}
+          <div class="form-floating mb-3">
+            <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+            <label for="floatingInput">Email address</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+            <label for="floatingPassword">Password</label>
+          </div>
+          
+          <button class="w-100 btn btn-lg btn-primary" type="submit">Log In</button>
+          <hr class="my-4">
+	      <div class="text-center">
+		      <a href="{% url 'register' %}" class=" btn btn-success" role="button" aria-pressed="true">Create New Account</a>
+	      </div>
+	      {% for field in login_form %}
+	        {% for error in field.errors %}
+	            <p style="color:red;">{{error}}</p>
+	        {% endfor %}
+          {% endfor %}
+	
+		  {% if login_form.non_field_errors %}
+	        <div style="color:red;">
+		        <p>{{login_form.non_field_errors}}</p>
+		    </div>
+		  {% endif %}
+	    </form>
+</div>
+
+
+
+
+
+
+{% endblock content %}
+
+
