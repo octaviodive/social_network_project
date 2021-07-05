@@ -9,7 +9,20 @@
 	    {% block title %}
 	    {% endblock  %}
     </title>
-	
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+	  $( function() {
+	    $( "#datepicker" ).datepicker({
+	      dateFormat: 'yy-mm-dd',
+	      yearRange: "1930:2021",
+	      changeMonth: true,
+	      changeYear: true
+	    });
+	  } );
+  </script>
 	<link rel="shortcut icon" type="image/png" href="{% static '/favicon/favicon.ico' %}"/>
 	{% block link %}
 	{% endblock %}
@@ -22,7 +35,7 @@
     <style type="text/css">
         .main{
            min-height: 100vh;
-           heigh:90;
+           
            background-color:#35D8C2;
            position: relative;
          }

@@ -5,36 +5,58 @@
 
 {% block content %}
 <style type="text/css">
-	.register{
-		margin: auto;
-		height: 100px;
-        width: 50%;
-	}
+
 	
 </style>
 
 
-<div class="container" id="wrap">
-	        <div class="register">
-	        <div class="d-flex justify-content-end">
-            <form method="post" accept-charset="utf-8" class="p-4 p-md-5 border rounded-3 bg-light" >{% csrf_token %}
-	            <legend>Sign Up</legend>
-	            <h4>It's free and always will be.</h4>
-	            <div class="row">
-                    <div class="col-xs-6 col-md-6">
-                        <input type="text" name="first_name" value="" class="form-control input-lg" placeholder="First Name" required>
-                    </div>
-                    <div class="col-xs-6 col-md-6">
-                        <input type="text" name="last_name" value="" class="form-control input-lg" placeholder="Last Name" required>
-                    </div>
-                </div>
-	            <input type="email" name="email" value="" class="form-control input-lg" placeholder="Email" required>
-                <input type="text" name="username" value="" class="form-control input-lg" placeholder="Username"required>
-	            <input type="password" name="password1" value="" class="form-control input-lg" placeholder="Password" required>
-	            <input type="password" name="password2" value="" class="form-control input-lg" placeholder="Confirm Password" required>
-	            <label>Birth Date</label>
-	            <div class="row">
-                    <div class="col-xs-4 col-md-4">
+	<div class="container d-flex h-100">
+		<div class="row justify-content-center align-self-center">
+			<div class="col-6">
+				  <form method="post" accept-charset="utf-8" class="p-4 p-md-5 border rounded-3 bg-light" >{% csrf_token %}
+					  
+					  <legend>Sign Up</legend>
+					  <h4>It's free and always will be.</h4>
+	                  <div class="row">
+		                  
+		                  <div class="col-xs-6 col-md-6">
+			                  <input type="text" name="first_name" value="" class="form-control input-lg" placeholder="First Name" required>
+                          </div>
+		                  
+                          <div class="col-xs-6 col-md-6">
+	                          <input type="text" name="last_name" value="" class="form-control input-lg" placeholder="Last Name" required>
+                          </div>
+		                  
+		                  <div class="input-group mb-2">
+			                  <input type="email" name="email" value="" class="form-control input-lg" placeholder="Email" required>
+		                  </div>
+		                  
+		                  <div class="input-group mb-2">
+			                  <input type="text" name="username" value="" class="form-control input-lg" placeholder="Username" required>
+		                  </div>
+		                  
+		                  <div class="input-group mb-2">
+			                  <input type="password" name="password1" value="" class="form-control input-lg" placeholder="Password" required>
+		                  </div>
+		                  
+		                  <div class="input-group mb-2">
+			                  <input type="password" name="password2" value="" class="form-control input-lg" placeholder="Confirm Password" required>
+		                  </div>
+		                  <label>Birth Date</label>
+		                  
+		                  <div class="input-group mb-2">
+			                  
+			                  <input type="text" name='date_of_birth' id="datepicker"/>
+			                  
+		                  
+ 						
+			                  
+		                  </div>
+	                  </div>
+					      
+					      
+			<!--	  <div class="row">
+						  <div class="col-xs-4 col-md-4">
                         <select name="month" class = "form-control input-lg">
                             <option value="01">Jan</option>
                             <option value="02">Feb</option>
@@ -50,7 +72,7 @@
                             <option value="12">Dec</option>
                         </select>
                     </div>
-                    <div class="col-xs-4 col-md-4">
+                          <div class="col-xs-4 col-md-4">
                         <select name="day" class = "form-control input-lg">
                             <option value="1">1</option>
 							<option value="2">2</option>
@@ -85,7 +107,7 @@
                             <option value="31">31</option>
                         </select>
                     </div>
-	                <div class="col-xs-4 col-md-4">
+	                      <div class="col-xs-4 col-md-4">
 		                <select name="year" class = "form-control input-lg">
 			                <option value="1935">1935</option>
 				            <option value="1936">1936</option>
@@ -167,24 +189,33 @@
 							<option value="2012">2012</option>
 							<option value="2013">2013</option>
 			            </select>
-	                </div>
-		        {% for field in registration_form %}
-		            
-	                {% if field.help_text %}
-		               <small style="color: grey;">{{field.help_tag}}</small>
-		            {% endif %}
-		
-		            {% for error in field.errors %}
-		                 <small style="color: red;">{{error}}</small>
-		            {% endfor %}
-             
-	            {% endfor %}
-		        <span class="help-block">By clicking Create my account, you agree to our Terms and that you have read our Data Use Policy, including our Cookie Use.</span>
-                    <button class="btn btn-lg btn-primary btn-block signup-btn" type="submit">
-                        Create my account</button>
+	                </div>       -->
+		              {% for field in registration_form %}
+						  
+						  			        
+			                {% if field.help_text %}
+				               <small style="color: grey;">{{field.help_tag}}</small>
+				            {% endif %}
+				
+				            {% for error in field.errors %}
+				                 <small style="color: red;">{{error}}</small>
+				            {% endfor %}
+				      {% endfor %}
+						  
+						  
+		              <span class="help-block">By clicking Create my account, you agree to our Terms and that you have read our Data Use Policy, including our Cookie Use.</span>
+                      <button class="btn btn-lg btn-primary btn-block signup-btn" type="submit">
+	                      Create my account</button>
               
-	            </div></form></div></div>
-        </div>
+					  </div>
+				  </form>
+				
+			</div>
+		</div>
+	</div>
+		
+        
+		
       
 
 
