@@ -3,9 +3,10 @@ from django.conf import settings
 
 # Create your models here.
 
+
 class Category(models.Model):
     class Meta:
-        verbose_name =  'Category'
+        verbose_name = 'Category'
         verbose_name_plural = 'Categories'
 
     user = models.ForeignKey(
@@ -18,7 +19,7 @@ class Category(models.Model):
 
 class Photo(models.Model):
     class Meta:
-        verbose_name =  'Photo'
+        verbose_name = 'Photo'
         verbose_name_plural = 'Photos'
 
     category = models.ForeignKey(
