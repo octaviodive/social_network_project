@@ -15,7 +15,7 @@ def gallery(request):
 
     categories = Category.objects.filter(user=user)
     context = {'categories': categories, 'photos': photos}
-    return render(request, 'photos/index.html', context)
+    return render(request, 'photos/home.html', context)
 
 @login_required(login_url='login')
 def view_photo(request, pk):
