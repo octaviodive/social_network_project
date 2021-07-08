@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Category, Photo
 from django.contrib.auth.decorators import login_required
 
@@ -15,7 +15,7 @@ def gallery(request):
 
     categories = Category.objects.filter(user=user)
     context = {'categories': categories, 'photos': photos}
-    return render(request, 'photos/home.html', context)
+    return render(request, 'photos/index.html', context)
 
 @login_required(login_url='login')
 def view_photo(request, pk):
@@ -49,7 +49,7 @@ def add_photo(request):
                 image=image,
             )
 
-        return redirect('gallery')
+        return redirect('home')
 
     context = {'categories': categories}
     return render(request, 'photos/add.html', context)

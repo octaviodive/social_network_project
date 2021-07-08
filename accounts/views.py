@@ -1,11 +1,17 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 
-from accounts.forms import RegistrationForm, AccountAuthenticationForm, AccountUpdateForm
+from .forms import RegistrationForm, AccountAuthenticationForm, AccountUpdateForm
 
-def home_view(request):
+
+def index_view(request):
+    user = request.user
+    if user.is_authenticated:
+        return redirect('home')
+
     context = {}
-    return render(request, "accounts/home.html", context)
+    return render(request, "accounts/index.html", context)
+
 
 def registration_view(request):
     context = {}
@@ -26,9 +32,11 @@ def registration_view(request):
         context['registration_form'] = form
     return render(request, 'accounts/register.html', context)
 
+
 def logout_view(request):
     logout(request)
-    return redirect('home')
+    return redirect('index')
+
 
 def login_view(request):
     context = {}
