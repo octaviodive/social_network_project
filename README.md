@@ -8,3 +8,12 @@
   <li>Logout</li>
   <li>Home page</li>
 </ul>
+<h2>Download & Setup Instructions</h2>
+<ol>
+  <li> Clone project: git clone https://github.com/octaviodive/social_network_project.git</li>
+  <li> cd social_network_project</li>
+  <li> Create virtual environment: virtualenv myenv</li>
+  <li> myenv\scripts\activate</li>
+  <li> pip install -r requirements.txt</li>
+  <li> py manage.py runserver</li>
+</ol>
